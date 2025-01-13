@@ -1,37 +1,32 @@
 package com.example.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLClientInfoException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.mysql.cj.protocol.Resultset;
-import com.mysql.cj.xdevapi.Result;
+import java.sql.Statement;
 
 public class DataBaseConnection {
-    public static void main(String[] args) {
-        Connection conexao = null;
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver"); // Driver do MySQL
-            conexao = DriverManager.getConnection( // criando a conexao
-            "jdbc:mysql://localhost:3306/nome_do_banco", "root", "root");
-            Resultset result = conexao.createStatement().executeQuery("SELECT * FROM nome_da_tabela"); // retornando os dados da tabela
-            while (result.next()) {
-                System.out.println("Nome: " + result.getString("nome"));
+    private static final String URL = "jdbc:mysql://localhost:3306/nome_do_banco";
+    private static final String USER = "root";
+    private static final String PASSWORD = "root";
+
+    public static void main(String[] args) {
+
+        // Tentativa de conexão
+        try (Connection conexao = DriverManager.getConnection(URL, USER, PASSWORD);
+             Statement statement = conexao.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM nome_da_tabela")) {
+
+            // Iteração no ResultSet
+            while (resultSet.next()) {
+                System.out.println("Nome: " + resultSet.getString("nome"));
             }
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Driver não encontrado: " + ex.getMessage());    
-        }   
-        catch(SQLException ex) {
-            System.out.println("Erro de conexão: " + ex.getMessage());
-    } finally {
-        if (conexao != null) { // diferente de nulo significa que a conexao existe
-            try {
-                conexao.close();
-            } catch (SQLException ex) {
-                System.out.println("Erro ao fechar a conexão: " + ex.getMessage());
-            }
+
+        } catch (SQLException ex) {
+            System.err.println("Erro na conexão ou execução da query: " + ex.getMessage());
+            ex.printStackTrace(); // Melhor usar um logger em aplicações reais
         }
-    }
     }
 }
