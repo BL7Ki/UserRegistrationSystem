@@ -1,5 +1,5 @@
 package com.example.models;
-
+// aqui so tem modelo de dados e validacoes
 public class User {
     private int id;
     private String name;
