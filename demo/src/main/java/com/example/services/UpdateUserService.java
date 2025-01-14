@@ -1,15 +1,15 @@
 package com.example.services;
 
-import com.example.dao.DataBaseConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.example.dao.DataBaseConnection;
+
 public class UpdateUserService {
 
     public void update(int id, String novoNome) {
-        String sql = "UPDATE nome_da_tabela SET nome = ? WHERE id = ?";
+        String sql = "UPDATE usuarios SET nome = ? WHERE id = ?";
         try (Connection conexao = DataBaseConnection.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 

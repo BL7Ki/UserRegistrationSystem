@@ -7,7 +7,7 @@ import java.sql.SQLException;
 // SRP - responsabilidade unica. Cria e fornece uma conexao com o banco
 public class DataBaseConnection {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/nome_do_banco";
+    private static final String URL = "jdbc:mysql://localhost:3306/sistema_cadastro";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 

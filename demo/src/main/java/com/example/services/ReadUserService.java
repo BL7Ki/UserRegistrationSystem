@@ -1,16 +1,16 @@
 package com.example.services;
 
-import com.example.dao.DataBaseConnection;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.example.dao.DataBaseConnection;
+
 public class ReadUserService {
 
     public void read() {
-        String sql = "SELECT * FROM nome_da_tabela";
+        String sql = "SELECT * FROM usuarios";
         try (Connection conexao = DataBaseConnection.getConnection();
              Statement stmt = conexao.createStatement();
              ResultSet resultSet = stmt.executeQuery(sql)) {

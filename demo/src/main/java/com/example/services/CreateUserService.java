@@ -1,15 +1,15 @@
 package com.example.services;
 
-import com.example.dao.DataBaseConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.example.dao.DataBaseConnection;
+
 public class CreateUserService {
 
     public void create(String nome) {
-        String sql = "INSERT INTO nome_da_tabela (nome) VALUES (?)";
+        String sql = "INSERT INTO usuarios (nome) VALUES (?)";
         try (Connection conexao = DataBaseConnection.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
