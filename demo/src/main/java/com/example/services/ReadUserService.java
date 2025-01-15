@@ -17,6 +17,9 @@ public class ReadUserService {
 
             while (resultSet.next()) {
                 System.out.println("Nome: " + resultSet.getString("nome"));
+                System.out.println("Email: " + resultSet.getString("email"));
+                System.out.println("Senha: " + resultSet.getString("senha"));
+                System.out.println("--------------------");
             }
 
         } catch (SQLException ex) {
